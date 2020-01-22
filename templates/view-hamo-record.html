@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% block head %} {% endblock %}
+{% block body %} 
+<header>
+    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+        <div class="container">
+            <h3 style="padding: 10px;">
+                Deleted Hamo Records |
+            </h3>
+            <h5><a style="text-decoration: none;" href="/">View Hamo Records</a></h5>
+            <h4 style="padding: 10px;"><a style="text-decoration: none;" class="float-right" href="/edit-hamo-record/" >Add New Hamo Record</a></h4>
+        </div>
+    </nav>
+</header>   
+
+<input type='hidden' name='hamo_record_id' value="{{ data.id }}"/>
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col-md-auto">
+        </div>
+        <div class="col-md-6">
+            <!--hamo record information-->
+            <table class="table table-borderless" style="text-align: center;">
+                <thead>
+                    <tr>
+                        <th scope="col"><h5>Hamo Record</h5></th>
+                        <th scope="col"><h5>Date Created</h5></th>
+                        <th scope="col"><h5>Load Expiry</h5></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row" ><h2>{{ data.id }}</h2></th>
+                        <td><h6>{{ data.date_added }}</h6></td>
+                        <td><h6>{{ data.wash_expiration_date }}</h6></td>
+
+                    </tr>
+                </tbody>
+            </table>
+            <!--hamo stage 1-->
+            <table class="table table-bordered" style="padding-top: 10px;">
+                <thead class="thead-light">
+                    <tr>
+                        <th colspan="2" style="text-align: center;"><h5>Hamo Record Stage 1</h5></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Hamo:</th>
+                        <td>{{ data.hamo_machine_id }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Hamo Calibration Expiry:</th>
+                        <td>{{ data.hamo_calibration_expiry}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Daily Test Completed:</th>
+                        <td>{{ data.daily_test_completed }}</td>
+                    </tr>
+                </tbody> 
+            </table>
+            <!--hamo stage 2-->
+            <table class="table table-bordered" style="padding-top: 10px;">
+                <thead class="thead-light">
+                    <tr>
+                        <th colspan="2" style="text-align: center;"><h5>Hamo Record Stage 2</h5></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Load id:</th>
+                        <td>{{ data.load_type }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Cycle Wash Type:</th>
+                        <td>{{ data.wash_type}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Chemical List:</th>
+                        <td>{{ data.full_wash_chemical_list }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Tubing List:</th>
+                        <td>{{ data.rinse_wash_tubing_list }}</td>
+                    </tr>
+                </tbody> 
+            </table>
+            <!--hamo stage 3-->
+            <table class="table table-bordered" style="padding-top: 10px;">
+                <thead class="thead-light">
+                    <tr>
+                        <th colspan="2" style="text-align: center;"><h5>Hamo Record Stage 3</h5></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Pre Rinse Stage:</th>
+                        <td>{{ data.pre_wash_passed }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Caustic Stage:</th>
+                        <td>{{ data.caustic_wash_passed}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Acid Stage:</th>
+                        <td>{{ data.acid_wash_passed }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Final Rinse Stage:</th>
+                        <td>{{ data.final_rinse_passed }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Drying Stage:</th>
+                        <td>{{ data.drying_stage_passed }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Cycle Comments:</th>
+                        <td>{{ data.comments }}</td>
+                    </tr>
+                </tbody> 
+            </table>
+        </div>
+        <div class="col-md-auto">
+        </div>
+    </div>
+</div>
+
+{% endblock %}

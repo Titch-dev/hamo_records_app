@@ -1,0 +1,108 @@
+
+<div class="container">
+    <h6 style="text-align: right; padding: 10px;"> Date added: {{ data.hamo_record.date_added }}</h6>
+    <h4 style="text-align: center; padding: 20px;">Stage Three: Cycle Analysis</h4>
+    <form method='POST' action='/save-hamo-stage-three-full-wash'>
+        <input type='hidden' name='hamo_record_id' value="{{ data.hamo_record.id }}"/>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Cycle Stage</th>
+            <th scope="col">Parameters</th>
+            <th scope="col">Criteria Met</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Pre-Rinse</th>
+            <td>Tank Temperature: 10<!-- find the symbol -->C - 40C<br>
+                Pump Pressure: 0.5 bar - 1.0 bar<br>
+                Duration: Greater than or equal to 1 min</td>
+            <td>
+              <div class="custom-control custom-radio">
+                <input type="radio" value="Yes" id="preRinseYes" name="pre_wash_passed" class="custom-control-input" required>
+                <label class="custom-control-label" for="preRinseYes">Yes</label>
+              </div>
+              <div class="custom-control custom-radio">
+                <input type="radio" value="No" id="preRinseNo" name="pre_wash_passed" class="custom-control-input" required>
+                <label class="custom-control-label" for="preRinseNo">No</label>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Caustic</th>
+            <td>Tank Temperature: 50C - 90C<br>
+                Pump Pressure: 0.5 bar - 1.0 bar<br>
+                Duration: Greater than or equal to 5 min
+            </td>
+            <td>
+              <div class="custom-control custom-radio">
+                <input type="radio" value="Yes" id="causticStageYes" name="caustic_wash_passed" class="custom-control-input" required>
+                <label class="custom-control-label" for="causticStageYes">Yes</label>
+              </div>
+              <div class="custom-control custom-radio">
+                <input type="radio" value="No" id="causticStageNo" name="caustic_wash_passed" class="custom-control-input" required>
+                <label class="custom-control-label" for="causticStageNo">No</label>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Acid</th>
+            <td>Tank Temperature: 10C - 80C<br>
+                Pump Pressure: 0.5 bar - 1.0 bar<br>
+                Concentration: Greater than 22%</td>
+            <td>
+              <div class="custom-control custom-radio">
+                <input type="radio" value="Yes" id="acidStageYes" name="acid_wash_passed" class="custom-control-input" required>
+                <label class="custom-control-label" for="acidStageYes">Yes</label>
+              </div>
+              <div class="custom-control custom-radio">
+                <input type="radio" value="No" id="acidStageNo" name="acid_wash_passed" class="custom-control-input" required>
+                <label class="custom-control-label" for="acidStageNo">No</label>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Final WFI Rinse</th>
+            <td>
+                Tank Temperature: Greater than 60C<br>
+                Conductivity: 0.0 - 3.0<!-- find the symbol -->uS/cm
+            </td>
+            <td>
+              <div class="custom-control custom-radio">
+                <input type="radio" value="Yes" id="finalRinseYes" name="final_rinse_passed" class="custom-control-input" required>
+                <label class="custom-control-label" for="finalRinseYes">Yes</label>
+              </div>
+              <div class="custom-control custom-radio">
+                <input type="radio" value="No" id="finalRinseNo" name="final_rinse_passed" class="custom-control-input" required>
+                <label class="custom-control-label" for="finalRinseNo">No</label>
+               </div>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Drying</th>
+            <td>
+                Air Temperature: 100C - 130C<br>
+                Duration: Greater than or equal to 13 mins
+            </td>
+            <td>
+                <div class="custom-control custom-radio">
+                    <input type="radio" value="Yes" id="dryingStageYes" name="drying_stage_passed" class="custom-control-input" required>
+                    <label class="custom-control-label" for="dryingStageYes">Yes</label>
+                </div>
+                <div class="custom-control custom-radio">
+                    <input type="radio" value="No" id="dryingStageNo" name="drying_stage_passed" class="custom-control-input" required>
+                    <label class="custom-control-label" for="dryingStageNo">No</label>
+                </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+    <textarea class="form-control" id="exampleFormControlTextarea1" name="comments" rows="5" style="padding: 10px;" placeholder="Add cycle comments here"></textarea>
+    
+    <div style="text-align: center; padding: 30px;">
+      <button type="submit" class="btn btn-primary" >Submit</button>
+    </div>
+    </form>
+    
+</div>

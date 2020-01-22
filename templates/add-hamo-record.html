@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block head %} 
+<title>Hamo Form</title>
+{% endblock %}
+
+{% block body %} 
+
+<header>
+    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+        <div class="container">
+            <h3 style="padding: 10px">
+                <a style="text-decoration: none;" href="/">View Hamo Records</a> 
+            </h3>
+        </div>
+    </nav>
+</header>    
+
+<!-- Stage One -->
+
+{% if data.current_hamo_stage == 1 %}
+
+    {% include 'includes/hamo-record-stage-one.html' with context %}
+
+{% endif %}
+
+<!-- Stage two -->
+
+{% if data.current_hamo_stage == 2 %}
+
+    {% include 'includes/hamo-record-stage-two.html' with context %}
+  
+{% endif %}
+
+<!-- Stage three full wash -->
+{% if data.current_hamo_stage == 3 %}
+
+    {% include 'includes/hamo-record-stage-three-full-wash.html' with context %}
+
+{% endif %}
+
+<!-- Stage three rinse wash-->
+
+{% if data.current_hamo_stage == 4 %}
+
+    {% include 'includes/hamo-record-stage-three-rinse-wash.html' with context %}
+
+{% endif %}
+
+{% endblock %}
