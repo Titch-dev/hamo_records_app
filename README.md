@@ -64,16 +64,16 @@ Now open your prefered web browser and navigate to http://127.0.0.1:5000/
 ## Basic Usage
 ### Landing/Index page
 Here the user is able to:
-..* View An abridged version of all hamo records created in descending order
-..* Click a link to view deleted hamo records *(nav bar)*
-..* Click a link to create a new hamo record  *(nav bar)*
-..* Click a link to view all information of chosen record *(once a record is created)*
-..* Click a link to delete a chosen record *(once a record is created)*
+  * View An abridged version of all hamo records created in descending order
+  * Click a link to view deleted hamo records *(nav bar)*
+  * Click a link to create a new hamo record  *(nav bar)*
+  * Click a link to view all information of chosen record *(once a record is created)*
+  * Click a link to delete a chosen record *(once a record is created)*
 
 ### Adding a Hamo record
 Click the *Add New Hamo Record* link located in the nav bar.
-..* Fill out the required fields in stage one and submit
-..* Fill out the required fields in stage two and submit
-..* Fill out the required fields in stage three and submit
+  * Fill out the required fields in stage one and submit
+  * Fill out the required fields in stage two and submit
+  * Fill out the required fields in stage three and submit
 
 Once the stage three data has been submitted the user will be redirected back to the landing/index page where the most recent hamo record will be displayed.
