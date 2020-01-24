@@ -1,84 +1,79 @@
-# hamo_records
-Hamo record and audit trail app
+# hamo_records_app
+Hamo washing machine record and audit trail app
 
 
-## Model definitions
+## What is Hamo Records app?
+The Hamo Records app is a tool that generates a complete backend MySql database where you can create, read, update and delete records in the hamo records database.
 
-### hamo_wash_cycle:
-id primary key autoincrement not null,
-date_added datetime not null default now(),
-hamo_machine_id varchar(12) not null default "", 
-hamo_stage_one_status_id = int(11) default null,
-hamo_stage_two_status_id = int(11) default null,
-hamo_stage_three_status_id = int(11) default null,
-calibration_expiry_date date default null,
-daily_test_confirmation enum('yes'/'no') default null,
-wash_type enum('full wash','rinse wash') default null,
-load_type_id int(11) default null,
-full_wash_chemical_list = text() default null,
-rinse_wash_tubing_list = text() default null,
-prewash_passed enum('yes','no') default null,
-caustic_wash_passed enum('yes','no') default null,
-acid_wash_passed enum('yes','no') default null,
-final_rinse_passed enum('yes','no') default null,
-drying_stage_passed enum('yes','no') default null,
-wash_expiration_date datetime not null default now()+10days
-comments text() not null default "",
+It has been programmed using python flask framework
 
+## Installation
+### Clone the repository
+Navigate to the directory folder you wish to clone the hamo_records_app and enter the following command:
+```
+$ git clone https://github.com/Titch-dev/hamo_records_app.git
 
-### hamo_stage_one_status (hamo selection)
-id primary key autoincrement not null,
-status enum('pending','passed','failed') not null default 'pending'
-failure_message varchar(255) not null default "",
-datetime_processed datetime not null default now(),
--- # user 
+$ cd hamo_records_app
+```
+The hamo_records_app folder already comes with the virtual environment ready populated with required packages to run the application. (requirements.txt is included listing all packages needed)
 
-### hamo_stage_two_status (cycle selection)
-id primary key autoincrement not null,
-status enum('pending','passed','failed') not null default 'pending',
-failure_message varchar(255) not null default "",
-datetime_added datetime not null default now(),
-datetime_checked datetime not null default now(),
--- # user_added 
--- # user_checked 
+## Generate the CRUD backend
+### Download MySQL
+Download the MySQL Installer:
+https://dev.mysql.com/downloads/installer/
 
-### load_type:
-id primary key autoincrement not null
-name varchar(255) not null default "",
-vessel_list = text() not null default "",
-manifold_list = text() not null default "",
+Follow the installation instructions, setting your admin and admin password
 
-insert into load_type('name,'vessel_list','manifold_list')
-values 
-('SS100','SS6,SS7,SS8','MAN1,MAN2,MAN3'),
-('SS200','SS6,SS7,SS8,SS9','MAN4,MAN5,MAN6');
+### Creating the Database
+Open hamo_records_db.sql in your prefered IDE or text editor. Copy all syntax and paste into mysql shell:
+```
+mysql> CREATE DATABASE hamo_records_db; 
+       USE hamo_records_db; 
+       CREATE TABLE IF NOT EXISTS hamo_wash_cycle(
+       id INT.....
+       .....PRIMARY KEY (`id`)
+       ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
+ ```
+ The database is now created.
+ 
+ 
+### Creating Database User
+You will need to create a MySQL user and grant all privileges. In the mysql shell create a new user:
+```
+mysql> CREATE USER 'hamo_records_db'@'localhost' IDENTIFIED BY 'testpassword';
 
+mysql> GRANT ALL PRIVILEGES ON hamo_records_db . * TO 'hamo_records_db'@'localhost';
+```
 
-### hamo_stage_three_status (post-wash checks)
-id primary key autoincrement not null,
-datetime_added datetime not null default now(),
--- # user_added 
-status enum('pending','passed','failed') not null default 'pending',
-failure_message varchar(255) not null default "", 
+## Launching the application
+### Launching in local environment
+In the terminal navigate to /hamo_records directory:
+```
+$ cd hamo_records
+```
+Activate the virtual environment:
+```
+$ source env/Scripts/activate
+```
+Run the hamoapp.py file using the following command:
+```
+$ python hamoapp.py
+```
+Now open your prefered web browser and navigate to http://127.0.0.1:5000/
 
+## Basic Usage
+### Landing/Index page
+Here the user is able to:
+..* View An abridged version of all hamo records created in descending order
+..* Click a link to view deleted hamo records *(nav bar)*
+..* Click a link to create a new hamo record  *(nav bar)*
+..* Click a link to view all information of chosen record *(once a record is created)*
+..* Click a link to delete a chosen record *(once a record is created)*
 
-### For vessel and manifold - load type many to many relationship
+### Adding a Hamo record
+Click the *Add New Hamo Record* link located in the nav bar.
+..* Fill out the required fields in stage one and submit
+..* Fill out the required fields in stage two and submit
+..* Fill out the required fields in stage three and submit
 
-vessels
-id
-name
-
-load_type_vessel_map
-id
-load_type_id
-vessel_id
-
-manifolds
-id
-name
-
-load_type_manifold_map
-id
-load_type_id
-manifold_id
-
+Once the stage three data has been submitted the user will be redirected back to the landing/index page where the most recent hamo record will be displayed.
