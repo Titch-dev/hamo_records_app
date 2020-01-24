@@ -5,9 +5,8 @@
     <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
         <div class="container">
             <h3 style="padding: 10px;">
-                Deleted Hamo Records |
+                <a style="text-decoration: none;" href="/">View Hamo Records</a>
             </h3>
-            <h5><a style="text-decoration: none;" href="/">View Hamo Records</a></h5>
             <h4 style="padding: 10px;"><a style="text-decoration: none;" class="float-right" href="/edit-hamo-record/" >Add New Hamo Record</a></h4>
         </div>
     </nav>
@@ -51,11 +50,11 @@
                     </tr>
                     <tr>
                         <th scope="row">Hamo Calibration Expiry:</th>
-                        <td>{{ data.hamo_calibration_expiry}}</td>
+                        <td>{{ data.calibration_expiry_date }}</td>
                     </tr>
                     <tr>
                         <th scope="row">Daily Test Completed:</th>
-                        <td>{{ data.daily_test_completed }}</td>
+                        <td>{{ data.daily_test_confirmation }}</td>
                     </tr>
                 </tbody> 
             </table>

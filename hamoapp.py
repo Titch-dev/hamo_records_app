@@ -16,10 +16,10 @@ mysql = MySQL(app)
 @app.route('/', methods=['GET'])
 def index():
 
-    # Select all hamo records. Populate into template. Loop over records in table.
+    # 1. select all hamo records. Populate into template. Loop over records in index.html table.
     data = dbquery.getAllShownHamoRecords(mysql)
     
-    # 3. add show hidden flag to index page
+    # 2. return index page
     return render_template('index.html', data = data)
     
 
@@ -28,7 +28,7 @@ def addHamoRecord():
 
     # 1. check if hamo record id is in path or get param
     # 2. if no hamo record id, create new hamo record
-    # 2. If hamo record id found, get hamo record and show correct stage of form, based on status fields
+    # 3. If hamo record id found, get hamo record and show correct stage of form, based on status fields
 
     hamo_record_id = request.args.get("id")
 
@@ -41,7 +41,6 @@ def addHamoRecord():
     else:
 
         # get the hamo record and determine which stage of the process we are at.
-        
         hamo_record = dbquery.getHamoRecordById(mysql,hamo_record_id)
 
         template_data = {}
@@ -66,6 +65,7 @@ def addHamoRecord():
 
 @app.route('/save-hamo-stage-one', methods=['POST'])
 def saveHamoStageOne():
+    
     # 1. get the form data including the id from the request
     hamo_record_id = request.form.get("hamo_record_id")
 
@@ -81,9 +81,8 @@ def saveHamoStageOne():
 
 @app.route('/save-hamo-stage-two', methods=['GET','POST'])
 def saveHamoStageTwo():
+   
     # 1. get the form data including the id from the request
-    
-    
     hamo_record_id = request.form.get("hamo_record_id")
 
     load_type = request.form.get("load_type")
@@ -110,7 +109,6 @@ def saveHamoStageTwo():
     if rinse_wash_tubing_list is None:
         rinse_wash_tubing_list = "N/A"
 
-
     # 2. pass this into the update_hamo_record_stage_two method
     dbquery.updateHamoRecordStageTwo(mysql,hamo_record_id,load_type,wash_type,full_wash_chemical_list,rinse_wash_tubing_list)
 
@@ -120,10 +118,11 @@ def saveHamoStageTwo():
     
 @app.route('/save-hamo-stage-three-full-wash', methods=['POST'])
 def saveHamoStageThreeFullWash():
+    
     # 1. get the form data including the id from the request
     hamo_record_id = request.form.get("hamo_record_id")
 
-    # Get the args from the form (make sure the input elements have the correct name and value)
+    # 2. Get the args from the form (make sure the input elements have the correct name and value)
     hamo_machine_id = request.form.get("hamo_machine_id")
     
     pre_wash_passed = request.form.get("pre_wash_passed")
@@ -133,14 +132,15 @@ def saveHamoStageThreeFullWash():
     drying_stage_passed = request.form.get("drying_stage_passed")
     comments = request.form.get("comments")
     
-    # 2. pass this into the update_hamo_record_stage_three method
+    # 3. pass this into the update_hamo_record_stage_three method
     id = dbquery.updateHamoRecordStageThreeFullWash(mysql,hamo_record_id,pre_wash_passed,caustic_wash_passed,acid_wash_passed,final_rinse_passed,drying_stage_passed, comments)
    
-    # 3. redirect to index page
+    # 4. redirect to index url
     return redirect("/")
 
 @app.route('/save-hamo-stage-three-rinse-wash', methods=['POST'])
 def saveHamoStageThreeRinseWash():
+    
     # 1. get the form data including the id from the request
     hamo_record_id = request.form.get("hamo_record_id")
 
@@ -159,6 +159,7 @@ def saveHamoStageThreeRinseWash():
 
 @app.route('/view-hamo-record/', methods=['GET'])
 def viewHamoRecord():
+    
     # 1. get hamo record by id
     hamo_record_id = request.args.get("id")
 
@@ -169,9 +170,9 @@ def viewHamoRecord():
     return render_template('view-hamo-record.html', data = data)
 
 
-
 @app.route('/hidden-hamo-records/', methods=['GET'])
 def viewHiddenHamoRecord():
+    
     # 1. get hamo record by id
     hamo_record_id = request.args.get("id")
     
