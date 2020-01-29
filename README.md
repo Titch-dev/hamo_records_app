@@ -27,12 +27,37 @@ Follow the installation instructions, setting your admin and admin password
 ### Creating the Database
 Open hamo_records_db.sql in your prefered IDE or text editor. Copy all syntax and paste into mysql shell:
 ```
-mysql> CREATE DATABASE hamo_records_db; 
-       USE hamo_records_db; 
-       CREATE TABLE IF NOT EXISTS hamo_wash_cycle(
-       id INT.....
-       .....PRIMARY KEY (`id`)
-       ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
+# example of entries into mysql shell
+
+mysql> CREATE DATABASE hamo_records_db;
+
+mysql> USE hamo_records_db;
+
+mysql> CREATE TABLE IF NOT EXISTS hamo_wash_cycle(
+  id INTEGER NOT NULL AUTO_INCREMENT,
+  date_added TIMESTAMP NOT NULL default CURRENT_TIMESTAMP,
+  hamo_machine_id VARCHAR(12) NOT NULL default "",
+  calibration_expiry_date DATE default NULL,
+  daily_test_confirmation ENUM('Yes', 'No') default NULL,
+  wash_type ENUM('Full Wash', 'Rinse Wash') default NULL,
+  load_type VARCHAR(255) NOT NULL default "",
+  full_wash_chemical_list VARCHAR(255) default "N/A",
+  rinse_wash_tubing_list VARCHAR(255) default "N/A",
+  pre_wash_passed ENUM('Yes', 'No', 'N/A') default 'N/A',
+  caustic_wash_passed ENUM('Yes', 'No', 'N/A') default 'N/A',
+  acid_wash_passed ENUM('Yes', 'No', 'N/A') default 'N/A',
+  final_rinse_passed ENUM('Yes', 'No') default NULL,
+  drying_stage_passed ENUM('Yes', 'No') default NULL,
+  comments VARCHAR(500) NOT NULL default "N/A",
+  cycle_result ENUM('Pass', 'Fail', 'Pending') NOT NULL default 'Pending',
+  wash_expiration_date TIMESTAMP NOT NULL default CURRENT_TIMESTAMP,
+  hamo_stage_one_status_id INTEGER(11) default NULL,
+  hamo_stage_two_status_id INTEGER(11) default NULL,
+  hamo_stage_three_status_id INTEGER(11) default NULL,
+  is_hidden INTEGER(11) default 0,
+  PRIMARY KEY (`id`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8;
+
  ```
  The database is now created.
  
@@ -40,10 +65,18 @@ mysql> CREATE DATABASE hamo_records_db;
 ### Creating Database User
 You will need to create a MySQL user and grant all privileges. In the mysql shell create a new user:
 ```
+# choose a secure password in place of 'testpassword'
+
 mysql> CREATE USER 'hamo_records_db'@'localhost' IDENTIFIED BY 'testpassword';
 
 mysql> GRANT ALL PRIVILEGES ON hamo_records_db . * TO 'hamo_records_db'@'localhost';
 ```
+Open hamoapp.py in chosen IDE/text editor and ammend the database config password `'testpassword'` to your chosen secure password:
+```
+# hamoapp.py line 10 
+app.config['MYSQL_PASSWORD'] = 'testpassword'
+```
+Save the changes.
 
 ## Launching the application
 ### Launching in local environment
@@ -77,3 +110,6 @@ Click the *Add New Hamo Record* link located in the nav bar.
   * Fill out the required fields in stage three and submit
 
 Once the stage three data has been submitted the user will be redirected back to the landing/index page where the most recent hamo record will be displayed.
+
+### License
+Click this link to view the LICENSE file
