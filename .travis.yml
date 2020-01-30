@@ -9,7 +9,7 @@ env:
     - TRAVIS=true
 
 before_install:
-    - mysql -u root --password="" < ~/test/hamo_records_test_db.sql
+  - mysql -u root --password="" < test/hamo_records_test_db.sql
 
 install:
   - pip install -r requirements.txt
