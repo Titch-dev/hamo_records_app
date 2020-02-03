@@ -1,9 +1,79 @@
 
 <div class="container">
-    <h6 style="text-align: right; padding: 10px;"> Date added: {{ data.hamo_record.date_added }}</h6>
-    <h4 style="text-align: center; padding: 20px;">Stage Three: Cycle Analysis</h4>
-    <form method='POST' action='/save-hamo-stage-three-full-wash'>
-        <input type='hidden' name='hamo_record_id' value="{{ data.hamo_record.id }}"/>
+  <div class="row justify-content-md-center">
+    <div class="col-md-auto">
+    </div>
+    <div class="col-md-6">
+        <!--hamo record information-->
+        <table class="table table-borderless" style="text-align: center;">
+            <thead>
+                <tr>
+                    <th scope="col"><h5>Hamo Record</h5></th>
+                    <th scope="col"><h5>Date Created</h5></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row" ><h2>{{ data.hamo_record.id }}</h2></th>
+                    <td><h6>{{ data.hamo_record.date_added }}</h6></td>
+                </tr>
+            </tbody>
+        </table>
+        <!--hamo stage 1-->
+        <table class="table table-bordered" style="padding-top: 10px;">
+            <thead class="thead-light">
+                <tr>
+                    <th colspan="2" style="text-align: center;"><h5>Hamo Record Stage 1</h5></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Hamo:</th>
+                    <td>{{ data.hamo_record.hamo_machine_id }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Hamo Calibration Expiry:</th>
+                    <td>{{ data.hamo_record.calibration_expiry_date }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Daily Test Completed:</th>
+                    <td>{{ data.hamo_record.daily_test_confirmation }}</td>
+                </tr>
+            </tbody> 
+        </table>
+        <!--hamo stage 2-->
+        <table class="table table-bordered" style="padding-top: 10px;">
+            <thead class="thead-light">
+                <tr>
+                    <th colspan="2" style="text-align: center;"><h5>Hamo Record Stage 2</h5></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Load id:</th>
+                    <td>{{ data.hamo_record.load_type }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Cycle Wash Type:</th>
+                    <td>{{ data.hamo_record.wash_type}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Chemical List:</th>
+                    <td>{{ data.hamo_record.full_wash_chemical_list }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Tubing List:</th>
+                    <td>{{ data.hamo_record.rinse_wash_tubing_list }}</td>
+                </tr>
+            </tbody> 
+        </table>
+    </div>
+    <div class="col-md-auto">
+    </div>
+  </div>
+  <h4 style="text-align: center; padding: 30px">Stage Three: Cycle Analysis</h4>
+  <form method='POST' action='/save-hamo-stage-three-full-wash'>
+    <input type='hidden' name='hamo_record_id' value="{{ data.hamo_record.id }}"/>
     <table class="table table-striped">
         <thead>
           <tr>
@@ -76,7 +146,7 @@
               <div class="custom-control custom-radio">
                 <input type="radio" value="No" id="finalRinseNo" name="final_rinse_passed" class="custom-control-input" required>
                 <label class="custom-control-label" for="finalRinseNo">No</label>
-               </div>
+                </div>
             </td>
           </tr>
           <tr>
@@ -103,6 +173,6 @@
     <div style="text-align: center; padding: 30px;">
       <button type="submit" class="btn btn-primary" >Submit</button>
     </div>
-    </form>
-    
+  </form>
+  
 </div>

@@ -1,61 +1,114 @@
+
 <div class="container">
-    <h6 style="text-align: right; padding: 10px;"> Date added: {{ data.hamo_record.date_added }}</h6>
-    <h4 style="text-align: center; padding: 20px;">Stage Two: Load Selection</h4>
-    <form method='POST' action='/save-hamo-stage-two'>
-        <input type='hidden' name='hamo_record_id' value="{{ data.hamo_record.id }}"/>
-        <div class="form-group col-md-4" style="padding: 20px;">
-            <label for="load_type"> <h6>Select Load:</h6></label>
-            <select name="load_type" id="inputState" class="form-control" required>
-                <option value="SD100: Vessel 1 | Manifold 1" selected>SD100: Vessel 1 | Manifold 1</option>
-                <option value="SD100: Vessel 1 | Manifold 2">SD100: Vessel 1 | Manifold 2</option>
-                <option value="SD100: Vessel 2 | Manifold 1">SD100: Vessel 2 | Manifold 1</option>
-                <option value="SD100: Vessel 2 | Manifold 2">SD100: Vessel 2 | Manifold 2</option>
-                <option value="SD200: Vessel 3 | Manifold 3">SD200: Vessel 3 | Manifold 3</option>
-                <option value="SD200: Vessel 3 | Manifold 4">SD200: Vessel 3 | Manifold 4</option>
-                <option value="SD200: Vessel 3 | Manifold 5">SD200: Vessel 3 | Manifold 5</option>
-                <option value="SD500: Vessel 4 | Manifold 1">SD500: Vessel 4 | Manifold 1</option>
-                <option value="SD500: Vessel 4 | Manifold 2">SD500: Vessel 4 | Manifold 2</option>
-            </select>
+    <div class="row justify-content-md-center">
+        <div class="col-md-auto">
         </div>
-        <div style="padding: 20px;">
-            <h6>Select the relevant wash cycle:</h6>     
-            <div class="custom-control custom-radio">
-                <input type="radio" value="Full Wash" id="fullWash" name="wash_type" class="custom-control-input" required>
-                <label class="custom-control-label" for="fullWash">Full Wash</label>
-            </div>
-            <div class="custom-control custom-radio">
-                <input type="radio" value="Rinse Wash" id="rinseWash" name="wash_type" class="custom-control-input" required>
-                <label class="custom-control-label" for="rinseWash">Rinse Wash</label>
-            </div>
+        <div class="col-md-6">
+            <!--hamo record information-->
+            <table class="table table-borderless" style="text-align: center;">
+                <thead>
+                    <tr>
+                        <th scope="col"><h5>Hamo Record</h5></th>
+                        <th scope="col"><h5>Date Created</h5></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row" ><h2>{{ data.hamo_record.id }}</h2></th>
+                        <td><h6>{{ data.hamo_record.date_added }}</h6></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-bordered" style="padding-top: 10px;">
+                <thead class="thead-light">
+                    <tr>
+                        <th colspan="2" style="text-align: center;"><h5>Hamo Record Stage 1</h5></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Hamo:</th>
+                        <td>{{ data.hamo_record.hamo_machine_id }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Hamo Calibration Expiry:</th>
+                        <td>{{ data.hamo_record.calibration_expiry_date }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Daily Test Completed:</th>
+                        <td>{{ data.hamo_record.daily_test_confirmation }}</td>
+                    </tr>
+                </tbody> 
+            </table>
+            <h4 style="text-align: center; padding: 20px;">Stage Two: Load Selection</h4>
+            <form method='POST' action='/save-hamo-stage-two'>
+                <input type='hidden' name='hamo_record_id' value="{{ data.hamo_record.id }}"/>
+                <h6>Select Load:</h6>
+                <div class="form-group col-md-6">
+                    <label for="load_type"> </label>
+                    <select name="load_type" id="inputState" class="form-control" required>
+                        <option value="SD100: Vessel 1 | Manifold 1" selected>SD100: Vessel 1 | Manifold 1</option>
+                        <option value="SD100: Vessel 1 | Manifold 2">SD100: Vessel 1 | Manifold 2</option>
+                        <option value="SD100: Vessel 2 | Manifold 1">SD100: Vessel 2 | Manifold 1</option>
+                        <option value="SD100: Vessel 2 | Manifold 2">SD100: Vessel 2 | Manifold 2</option>
+                        <option value="SD200: Vessel 3 | Manifold 3">SD200: Vessel 3 | Manifold 3</option>
+                        <option value="SD200: Vessel 3 | Manifold 4">SD200: Vessel 3 | Manifold 4</option>
+                        <option value="SD200: Vessel 3 | Manifold 5">SD200: Vessel 3 | Manifold 5</option>
+                        <option value="SD500: Vessel 4 | Manifold 1">SD500: Vessel 4 | Manifold 1</option>
+                        <option value="SD500: Vessel 4 | Manifold 2">SD500: Vessel 4 | Manifold 2</option>
+                    </select>
+                </div>
+
+                <h6>Select the relevant wash cycle:</h6>     
+                <div class="custom-control custom-radio" style="padding-left: 40px;">
+                    <input type="radio" value="Full Wash" id="fullWash" name="wash_type" class="custom-control-input" required>
+                    <label class="custom-control-label" for="fullWash">Full Wash</label>
+                </div>
+                <div class="custom-control custom-radio" style="padding-left: 40px;">
+                    <input type="radio" value="Rinse Wash" id="rinseWash" name="wash_type" class="custom-control-input" required>
+                    <label class="custom-control-label" for="rinseWash">Rinse Wash</label>
+                </div>
+
+    <!-- full wash form -->
+                <div id='full-wash' style="display:none;" >
+                    <h4 style="text-align: center;">Full Wash</h4>
+                    <h6>Enter Caustic information:</h6>
+                    <div class="form-group col-md-6">
+                        <input class="form-control" type="text" name="caustic_lot_number" placeholder="Caustic Lot Number">
+                    </div>
+                    <h6>Caustic expiry date:</h6>
+                    <div class="form-group col-md-6">
+                        <input name="caustic_expiry_date" type="date" id="date">
+                    </div>
+                    <h6>Enter Acid information:</h6>
+                    <div class="form-group col-md-6">
+                        <input class="form-control" type="text" name="acid_lot_number" placeholder="Acid Lot Number">
+                    </div>
+                    <h6>Acid expiry date:</h6>
+                    <div class="form-group col-md-6">          
+                        <input name="acid_expiry_date" type="date" id="date">
+                    </div>
+                </div>
+    <!-- rinse wash form -->
+                <div id='rinse-wash' style="display:none;">
+                    <h4 style="text-align: center;">Rinse Wash</h4>
+                    <h6>Enter Tubing information:</h6>
+                    <div class="form-group col-md-6">
+                        <input class="form-control" name="tubing_lot_number" type="text" placeholder="Tubing Lot Number">
+                    </div>
+                    <h6>Tubing expiry date:</h6>
+                    <div class="form-group col-md-6">
+                        <input name="tubing_expiry_date" type="date" id="date">
+                    </div>
+                </div>
+                <div style="text-align: center; padding: 30px;">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
         </div>
-        <!-- full wash form -->
-        <div id='full-wash' style="display:none;  padding: 20px;" >
-            <h4 style="text-align: center;">Full Wash</h4>
-            <div class="form-group col-md-4">
-                <h6>Enter Caustic information:</h6>
-                <input class="form-control" type="text" name="caustic_lot_number" placeholder="Caustic Lot Number">
-                <h6>Caustic expiry date:</h6>
-                <input name="caustic_expiry_date" type="date" id="date">
-                <h6>Enter Acid information:</h6>
-                <input class="form-control" type="text" name="acid_lot_number" placeholder="Acid Lot Number">
-                <h6>Acid expiry date:</p>
-                <input name="acid_expiry_date" type="date" id="date">
-            </div>
+        <div class="col-md-auto">
         </div>
-        <!-- rinse wash form -->
-        <div id='rinse-wash' style="display:none; padding: 20px;">
-            <h4 style="text-align: center;">Rinse Wash</h4>
-            <div class="form-group col-md-4">
-                <h6>Enter Tubing information:</h6>
-                <input class="form-control" name="tubing_lot_number" type="text" placeholder="Tubing Lot Number">
-                <h6>Tubing expiry date:</h6>
-                <input name="tubing_expiry_date" type="date" id="date">
-            </div>
-        </div>
-        <div style="text-align: center; padding: 30px;">
-            <button type="submit" class="btn btn-primary" >Submit</button>
-        </div>
-    </form>
+    </div>
 </div>
 
 <script>

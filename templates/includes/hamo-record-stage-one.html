@@ -1,37 +1,58 @@
 <div class="container">
-    <h6 style="text-align: right; padding: 10px;"> Date added: {{ data.hamo_record.date_added }}</h6>
-    <h4 style="text-align: center; padding: 20px;">Stage One: Hamo Selection</h4>
-    <form method='POST' action='/save-hamo-stage-one'>
-        <input type='hidden' name='hamo_record_id' value="{{ data.hamo_record.id }}"/>
-        <div style="padding: 20px;">
-            <h6>Select the Hamo:</h6>
-            <div class="custom-control custom-radio">
-                <input type="radio" id="hamoSelection" name="hamo_machine_id" class="custom-control-input" value="Hamo 01" required>
-                <label class="custom-control-label" for="hamoSelection">Hamo 01</label>
-            </div>
-            <div class="custom-control custom-radio">
-                <input type="radio" id="customRadio2" name="hamo_machine_id" class="custom-control-input" value="Hamo 02" required>
-                <label class="custom-control-label" for="customRadio2">Hamo 02</label>
-            </div>
+    <div class="row justify-content-md-center">
+        <div class="col-md-auto">
         </div>
-        <div style="padding: 20px;">
-            <h6>Select Hamo Calibration Expiry Date:</h6>
-            <input type="date" id="date" name="calibration_expiry_date" required>
+        <div class="col-md-6">
+            <!--hamo record information-->
+            <table class="table table-borderless" style="text-align: center;">
+                <thead>
+                    <tr>
+                        <th scope="col"><h5>Hamo Record</h5></th>
+                        <th scope="col"><h5>Date Created</h5></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row" ><h2>{{ data.hamo_record.id }}</h2></th>
+                        <td><h6>{{ data.hamo_record.date_added }}</h6></td>
+                    </tr>
+                </tbody>
+            </table>
+            <h4 style="text-align: center;">Stage One: Hamo Selection</h4>
+            <form method='POST' action='/save-hamo-stage-one'>
+                <input type='hidden' name='hamo_record_id' value="{{ data.hamo_record.id }}"/>
+                <div style="padding: 20px;">
+                    <h6>Select the Hamo:</h6>
+                    <div class="custom-control custom-radio">
+                        <input type="radio" id="hamoSelection" name="hamo_machine_id" class="custom-control-input" value="Hamo 01" required>
+                        <label class="custom-control-label" for="hamoSelection">Hamo 01</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input type="radio" id="customRadio2" name="hamo_machine_id" class="custom-control-input" value="Hamo 02" required>
+                        <label class="custom-control-label" for="customRadio2">Hamo 02</label>
+                    </div>
+                </div>
+                <div style="padding: 20px;">
+                    <h6>Select Hamo Calibration Expiry Date:</h6>
+                    <input type="date" id="date" name="calibration_expiry_date" required>
+                </div>
+                <div style="padding: 20px;">
+                    <h6>Confirm daily test has been completed:</h6>
+                    <div class="custom-control custom-radio">
+                        <input type="radio" id="dailyTestYes" name="daily_test_confirmation" class="custom-control-input" value="Yes" required>
+                        <label class="custom-control-label" for="dailyTestYes">Yes</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input type="radio" id="dailyTestNo" name="daily_test_confirmation" class="custom-control-input" value="No" required>
+                        <label class="custom-control-label" for="dailyTestNo">No</label>
+                    </div>
+                </div>
+                <div style="text-align: center; padding: 30px;">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
         </div>
-        <div style="padding: 20px;">
-            <h6>Confirm daily test has been completed:</h6>
-            <div class="custom-control custom-radio">
-                <input type="radio" id="dailyTestYes" name="daily_test_confirmation" class="custom-control-input" value="Yes" required>
-                <label class="custom-control-label" for="dailyTestYes">Yes</label>
-            </div>
-            <div class="custom-control custom-radio">
-                <input type="radio" id="dailyTestNo" name="daily_test_confirmation" class="custom-control-input" value="No" required>
-                <label class="custom-control-label" for="dailyTestNo">No</label>
-            </div>
+        <div class="col-md-auto">
         </div>
-        <div style="text-align: center; padding: 30px;">
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
-    </form>
-
+    </div>
 </div>
