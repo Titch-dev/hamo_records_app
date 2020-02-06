@@ -107,18 +107,18 @@ Here the user is able to:
 ### Adding a Hamo record
 Click *Add New Hamo Record* link located in the index nav bar
   * Fill out the required fields in stage one and submit
-  ![](images/hamo-stage-one.png)
+  ![](images/Hamo-Stage-One.png)
   * Fill out the required fields in stage two and submit
-  ![](images/hamo-stage-two.png)
+  ![](images/Hamo-Stage-Two.png)
   * Fill out the required fields in stage three and submit
-  ![](images/hamo-stage-three.png)
+  ![](images/Hamo-Stage-Three.png)
 Once the stage three data has been submitted the user will be redirected back to the landing/index page where the most recent hamo record will be displayed.
 
 ### View completed Hamo Record
-![](images/record-view.png)
+![](images/Record-View.png)
 
 ### View Deleted page
-![](images/deleted-view.png)
+![](images/Deleted-View.png)
 
 ### License
-Click this link to view the [LICENSE](LICENSE.md)
+Click this link to view the [LICENSE](LICENSE.txt)
