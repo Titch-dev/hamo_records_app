@@ -96,20 +96,29 @@ Now open your prefered web browser and navigate to http://127.0.0.1:5000/
 
 ## Basic Usage
 ### Landing/Index page
+![](images/index-view.png)
 Here the user is able to:
   * View An abridged version of all hamo records created in descending order
-  * Click a link to view deleted hamo records *(nav bar)*
-  * Click a link to create a new hamo record  *(nav bar)*
-  * Click a link to view all information of chosen record *(once a record is created)*
-  * Click a link to delete a chosen record *(once a record is created)*
+  * Click *View Deleted Hamo Records* to be redirected to Deleted page
+  * Click *Add New Hamo Record* (nav bar)
+  * Click *View* on a row to see all information of hamo record
+  * Click *Delete* on a row to move chosen record to deleted page
 
 ### Adding a Hamo record
-Click the *Add New Hamo Record* link located in the nav bar.
+Click *Add New Hamo Record* link located in the index nav bar
   * Fill out the required fields in stage one and submit
+  ![](images/hamo-stage-one.png)
   * Fill out the required fields in stage two and submit
+  ![](images/hamo-stage-two.png)
   * Fill out the required fields in stage three and submit
-
+  ![](images/hamo-stage-three.png)
 Once the stage three data has been submitted the user will be redirected back to the landing/index page where the most recent hamo record will be displayed.
 
+### View completed Hamo Record
+![](images/record-view.png)
+
+### View Deleted page
+![](images/deleted-view.png)
+
 ### License
-Click this link to view the LICENSE file
+Click this link to view the [LICENSE](LICENSE.md)
