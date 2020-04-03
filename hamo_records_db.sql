@@ -26,3 +26,4 @@ CREATE TABLE IF NOT EXISTS hamo_wash_cycle(
   is_hidden INTEGER(11) default 0,
   PRIMARY KEY (`id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
+

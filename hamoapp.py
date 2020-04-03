@@ -40,7 +40,7 @@ def addHamoRecord():
 
     else:
 
-        # get the hamo record and determine which stage of the process we are at.
+        # get the hamo record and determine which stage of the process user is at.
         hamo_record = dbquery.getHamoRecordById(mysql,hamo_record_id)
 
         template_data = {}
@@ -81,7 +81,6 @@ def saveHamoStageOne():
 
 @app.route('/save-hamo-stage-two', methods=['GET','POST'])
 def saveHamoStageTwo():
-   
     # 1. get the form data including the id from the request
     hamo_record_id = request.form.get("hamo_record_id")
 
@@ -94,14 +93,14 @@ def saveHamoStageTwo():
         acid_lot_number = request.form.get("acid_lot_number")
         acid_expiry_date = request.form.get("acid_expiry_date")
         
-        full_wash_chemical_list = caustic_lot_number + ":" + caustic_expiry_date + " | " + acid_lot_number + ":" + acid_expiry_date
+        full_wash_chemical_list = dbquery.buildFullChemicalList(caustic_lot_number,caustic_expiry_date,acid_lot_number,acid_expiry_date)
         rinse_wash_tubing_list = None
 
     elif wash_type == 'Rinse Wash':
         tubing_lot_number = request.form.get("tubing_lot_number")
         tubing_expiry_date = request.form.get("tubing_expiry_date")
 
-        rinse_wash_tubing_list = tubing_lot_number + ":" + tubing_expiry_date
+        rinse_wash_tubing_list = dbquery.buildRinseWashTubingList(tubing_lot_number,tubing_expiry_date)
         full_wash_chemical_list = None
 
     if full_wash_chemical_list is None:
@@ -112,8 +111,8 @@ def saveHamoStageTwo():
     # 2. pass this into the update_hamo_record_stage_two method
     dbquery.updateHamoRecordStageTwo(mysql,hamo_record_id,load_type,wash_type,full_wash_chemical_list,rinse_wash_tubing_list)
 
-    # 3. redirect to /edit-hamo-record/?id=<>
-    return redirect("/edit-hamo-record/?id="+str(hamo_record_id))    
+    # 3. redirect to edit-hamo-record
+    return redirect("/edit-hamo-record/?id="+str(hamo_record_id))
 
     
 @app.route('/save-hamo-stage-three-full-wash', methods=['POST'])

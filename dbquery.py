@@ -86,3 +86,13 @@ def updateIsHidden(mysql,hamo_record_id):
     cur.execute(command)
     mysql.connection.commit()
     return cur.lastrowid
+
+# concatenates rinse wash tubing list
+def buildRinseWashTubingList(tubing_lot_number,tubing_expiry_date):
+
+    return tubing_lot_number + ":" + tubing_expiry_date
+
+# concatenates full wash chemical list
+def buildFullChemicalList(caustic_lot_number,caustic_expiry_date,acid_lot_number,acid_expiry_date):
+
+    return caustic_lot_number + ":" + caustic_expiry_date + " | " + acid_lot_number + ":" + acid_expiry_date
